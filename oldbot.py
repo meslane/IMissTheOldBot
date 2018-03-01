@@ -41,13 +41,12 @@ def mainloop():
                     while end == False:
                         try:
                             word = list_of_words[list_of_words.index("old") + i]
+                            missed += " "
+                            missed += str(word.replace(".","").replace("?","").replace(",","").replace("!",""))
+                            
                             if "." in word or "?" in word or "," in word or "!" in word:
-                                missed += " "
-                                missed += str(word.replace(".","").replace("?","").replace(",","").replace("!",""))
                                 end = True
                             else:
-                                missed += " "
-                                missed += str(word.replace(".","").replace("?","").replace(",","").replace("!",""))
                                 i = i + 1
                         except IndexError:
                             end = True
