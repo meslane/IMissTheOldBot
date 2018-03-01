@@ -30,9 +30,27 @@ def mainloop():
                 sub = comment.subreddit #subreddit
                 
                 if 'i miss the old' in bodylower and user != "I_Miss_The_Old_Bot":
-                    list_of_words = body.split()
-              
-                    missed = list_of_words[list_of_words.index("old") + 1]
+                    string = [line for line in bodylower.split('\n') if "i miss the old" in line]
+                    string = ''.join(string)
+                    list_of_words = string.split()
+                    
+                    end = False
+                    missed = ""
+                    i = 1
+                    
+                    while end == False:
+                        try:
+                            word = list_of_words[list_of_words.index("old") + i]
+                            if "." in word or "?" in word or "," in word or "!" in word:
+                                missed += " "
+                                missed += str(word.replace(".","").replace("?","").replace(",","").replace("!",""))
+                                end = True
+                            else:
+                                missed += " "
+                                missed += str(word.replace(".","").replace("?","").replace(",","").replace("!",""))
+                                i = i + 1
+                        except IndexError:
+                            end = True
                     
                     reply = "I miss the old {0}, straight from the go {0}, chop up the soul {0}, set on his goals {0}, I hate the new {0}, the bad mood {0}, spaz in the news {0}, I miss the sweet {0}, chop up the beats {0}, I got to say at that time I'd like to meet {0}, see, I invented {0}, it wasn't any {0}s, and now I look and look around there's so many {0}s, I used to love {0}, I used to love {0}, I even had the pink polo I thought I was {0}, what if {0} made a song about {0} called 'I miss the old {0}' Man, that'd be so {0}. That's all it was {0}, we still love {0}, and I love you like {0} loves {0}.".format(missed)
                     comment.reply(reply)
